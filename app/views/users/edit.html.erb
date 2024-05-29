@@ -1,0 +1,24 @@
+<h1>User info</h1>
+
+<%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
+
+<div class="container　flex-column">
+
+      <div><h4>Name</h4>
+      <%= f.text_field :name %>
+      </div>
+      <div>
+      <h4>Image</h4>
+       <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
+      <div>
+      <h4>Introduction</h4>
+      <%= f.text_area :Introduction %>
+      </div>
+      <dic>
+      <%= link_to 'Update User', users_path, class: "btn btn-secondary" %>
+      </dic>
+  </div>
+</div>
+
+<% end %>
