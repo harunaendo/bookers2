@@ -5,7 +5,7 @@
 <div class='container px-5 px-sm-0'>
 	<div class='row'>
 	  <div class='col-md-3'>
-     <%= render 'book', user: @user, book: @book %>
+     <%= render 'book', user: @book.user, book: Book.new %>
     </div>
     <div class='col-md-8 offset-md-1 mt-4'>
      <h2>Book detail</h2>
@@ -14,7 +14,7 @@
        <tr>
         <td>
            <%= image_tag @book.user.get_profile_image(100,100) %>
-           <%= link_to user_path(current_user.id) do %><br>
+           <%= link_to user_path(@book.user.id) do %><br>
             <P><%= @book.user.name %></p>
            <% end %>
         </td>
@@ -26,15 +26,12 @@
            <p><%= @book.body %></p>
         </td>
         <td>
-           <% if @book.user == @user %>
-            <%= link_to edit_book_path(@book.id), class: "btn btn-success" %>
-           <% end %>
+           <% if @book.user == current_user %>
+            <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %>
          </td>
          <td>
-            <% if @book.user == @user %>
-             <%= link_to book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"  %>
-            Destroy
-            <% end %>
+             <%= link_to "Destroy", book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"  %>
+           <% end %>
          </td>
         </tr>
        </table>
