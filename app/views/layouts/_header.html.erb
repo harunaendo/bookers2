@@ -12,41 +12,49 @@
           <% if user_signed_in? %>
             <li>
                <!-- ログイン後のHomeリンクは未実装です。自分で調べて実装してみましょう -->
-               <i class="fa-solid fa-house"></i><a class="home_link"><%= link_to "Home", root_path %></a>
+               <%= link_to user_path(current_user.id), class:"nav-link text-light" do%>
+               <i class="fa-solid fa-house"></i> Home
+               <% end %>
+            </li>
             <li>
                <!-- ログイン後のUsersリンクは未実装です。自分で調べて実装してみましょう -->
-               <i class="fa-solid fa-users"></i><a class = "about-link"><%= link_to "Users", about_path %></a>
+               <%= link_to users_path, class:"nav-link text-light" do%>
+               <i class="fa-solid fa-users"></i> Users
+               <% end %>
             </li>
             <li>
               <!-- ログイン後のBooksリンクは未実装です。自分で調べて実装してみましょう -->
-              <i class="fa-solid fa-book-open"></i><a class = "about-link"><%= link_to "Books", books_path %></a>
+                <%= link_to books_path, class:"nav-link text-light" do%>
+                <i class="fa-solid fa-book-open"></i> Books
+                <% end %>
             </li>
             <li>
                <!-- ログイン後のLog outリンクは未実装です。自分で調べて実装してみましょう -->
-               <i class="fa-solid fa-right-from-bracket"></i><%= link_to "Log out", destroy_user_session_path, method: :delete %>
+               <!--i class="fa-solid fa-right-from-bracket"></i><!%= link_to "Log out", destroy_user_session_path, method: :delete %-->
+               <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do%>
+               <i class="fa-solid fa-right-from-bracket"></i> Log out
+               <% end %>
             </li>
           <% else %>
             <li>
-              <%= link_to root_path, class:"nav-link text-light" do%>
+               <%= link_to root_path, class:"nav-link text-light" do%>
                <i class="fa-solid fa-house"></i> Home
-              <% end %>
+               <% end %>
             </li>
             <li>
-              <%= link_to about_path, class:"nav-link text-light" do %>
+               <%= link_to about_path, class:"nav-link text-light" do %>
                <i class="fa-solid fa-link"></i> About
-              <% end %>
+               <% end %>
             </li>
             <li>
-              <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
-               <i class="fa-solid fa-user-plus"></i>
-               Sign up
-              <% end %>
+               <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+               <i class="fa-solid fa-user-plus"></i> Sign up
+               <% end %>
             </li>
             <li>
-              <%= link_to new_user_session_path, class:"nav-link text-light" do %>
-               <i class="fa-solid fa-right-to-bracket"></i>
-               Log in
-              <% end %>
+               <%= link_to new_user_session_path, class:"nav-link text-light" do %>
+               <i class="fa-solid fa-right-to-bracket"></i> Log in
+               <% end %>
             </li>
           <% end %>
         </ul>

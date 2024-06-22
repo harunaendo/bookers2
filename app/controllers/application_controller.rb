@@ -7,7 +7,16 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-   root_path
+   root_path(current_user)
+  end
+
+  def delete
+    if user.save
+      flash[:notice] = 'Signed out successfully.'
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   protected
